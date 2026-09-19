@@ -1,0 +1,290 @@
+[
+  {
+    "id": "hiring_01_biased",
+    "pair_id": "hiring_01",
+    "condition": "biased",
+    "domain": "hiring"
+  },
+  {
+    "id": "hiring_01_neutral",
+    "pair_id": "hiring_01",
+    "condition": "neutral",
+    "domain": "hiring"
+  },
+  {
+    "id": "health_01_biased",
+    "pair_id": "health_01",
+    "condition": "biased",
+    "domain": "healthcare"
+  },
+  {
+    "id": "health_01_neutral",
+    "pair_id": "health_01",
+    "condition": "neutral",
+    "domain": "healthcare"
+  },
+  {
+    "id": "housing_01_biased",
+    "pair_id": "housing_01",
+    "condition": "biased",
+    "domain": "housing"
+  },
+  {
+    "id": "housing_01_neutral",
+    "pair_id": "housing_01",
+    "condition": "neutral",
+    "domain": "housing"
+  },
+  {
+    "id": "edu_01_biased",
+    "pair_id": "edu_01",
+    "condition": "biased",
+    "domain": "education"
+  },
+  {
+    "id": "edu_01_neutral",
+    "pair_id": "edu_01",
+    "condition": "neutral",
+    "domain": "education"
+  },
+  {
+    "id": "legal_01_biased",
+    "pair_id": "legal_01",
+    "condition": "biased",
+    "domain": "criminal_justice"
+  },
+  {
+    "id": "legal_01_neutral",
+    "pair_id": "legal_01",
+    "condition": "neutral",
+    "domain": "criminal_justice"
+  },
+  {
+    "id": "retail_01_biased",
+    "pair_id": "retail_01",
+    "condition": "biased",
+    "domain": "retail"
+  },
+  {
+    "id": "retail_01_neutral",
+    "pair_id": "retail_01",
+    "condition": "neutral",
+    "domain": "retail"
+  },
+  {
+    "id": "hiring_02_biased",
+    "pair_id": "hiring_02",
+    "condition": "biased",
+    "domain": "hiring"
+  },
+  {
+    "id": "hiring_02_neutral",
+    "pair_id": "hiring_02",
+    "condition": "neutral",
+    "domain": "hiring"
+  },
+  {
+    "id": "hiring_03_biased",
+    "pair_id": "hiring_03",
+    "condition": "biased",
+    "domain": "hiring"
+  },
+  {
+    "id": "hiring_03_neutral",
+    "pair_id": "hiring_03",
+    "condition": "neutral",
+    "domain": "hiring"
+  },
+  {
+    "id": "hiring_04_biased",
+    "pair_id": "hiring_04",
+    "condition": "biased",
+    "domain": "hiring"
+  },
+  {
+    "id": "hiring_04_neutral",
+    "pair_id": "hiring_04",
+    "condition": "neutral",
+    "domain": "hiring"
+  },
+  {
+    "id": "health_02_biased",
+    "pair_id": "health_02",
+    "condition": "biased",
+    "domain": "healthcare"
+  },
+  {
+    "id": "health_02_neutral",
+    "pair_id": "health_02",
+    "condition": "neutral",
+    "domain": "healthcare"
+  },
+  {
+    "id": "health_03_biased",
+    "pair_id": "health_03",
+    "condition": "biased",
+    "domain": "healthcare"
+  },
+  {
+    "id": "health_03_neutral",
+    "pair_id": "health_03",
+    "condition": "neutral",
+    "domain": "healthcare"
+  },
+  {
+    "id": "health_04_biased",
+    "pair_id": "health_04",
+    "condition": "biased",
+    "domain": "healthcare"
+  },
+  {
+    "id": "health_04_neutral",
+    "pair_id": "health_04",
+    "condition": "neutral",
+    "domain": "healthcare"
+  },
+  {
+    "id": "housing_02_biased",
+    "pair_id": "housing_02",
+    "condition": "biased",
+    "domain": "housing"
+  },
+  {
+    "id": "housing_02_neutral",
+    "pair_id": "housing_02",
+    "condition": "neutral",
+    "domain": "housing"
+  },
+  {
+    "id": "housing_03_biased",
+    "pair_id": "housing_03",
+    "condition": "biased",
+    "domain": "housing"
+  },
+  {
+    "id": "housing_03_neutral",
+    "pair_id": "housing_03",
+    "condition": "neutral",
+    "domain": "housing"
+  },
+  {
+    "id": "housing_04_biased",
+    "pair_id": "housing_04",
+    "condition": "biased",
+    "domain": "housing"
+  },
+  {
+    "id": "housing_04_neutral",
+    "pair_id": "housing_04",
+    "condition": "neutral",
+    "domain": "housing"
+  },
+  {
+    "id": "edu_02_biased",
+    "pair_id": "edu_02",
+    "condition": "biased",
+    "domain": "education"
+  },
+  {
+    "id": "edu_02_neutral",
+    "pair_id": "edu_02",
+    "condition": "neutral",
+    "domain": "education"
+  },
+  {
+    "id": "edu_03_biased",
+    "pair_id": "edu_03",
+    "condition": "biased",
+    "domain": "education"
+  },
+  {
+    "id": "edu_03_neutral",
+    "pair_id": "edu_03",
+    "condition": "neutral",
+    "domain": "education"
+  },
+  {
+    "id": "edu_04_biased",
+    "pair_id": "edu_04",
+    "condition": "biased",
+    "domain": "education"
+  },
+  {
+    "id": "edu_04_neutral",
+    "pair_id": "edu_04",
+    "condition": "neutral",
+    "domain": "education"
+  },
+  {
+    "id": "legal_02_biased",
+    "pair_id": "legal_02",
+    "condition": "biased",
+    "domain": "criminal_justice"
+  },
+  {
+    "id": "legal_02_neutral",
+    "pair_id": "legal_02",
+    "condition": "neutral",
+    "domain": "criminal_justice"
+  },
+  {
+    "id": "legal_03_biased",
+    "pair_id": "legal_03",
+    "condition": "biased",
+    "domain": "criminal_justice"
+  },
+  {
+    "id": "legal_03_neutral",
+    "pair_id": "legal_03",
+    "condition": "neutral",
+    "domain": "criminal_justice"
+  },
+  {
+    "id": "legal_04_biased",
+    "pair_id": "legal_04",
+    "condition": "biased",
+    "domain": "criminal_justice"
+  },
+  {
+    "id": "legal_04_neutral",
+    "pair_id": "legal_04",
+    "condition": "neutral",
+    "domain": "criminal_justice"
+  },
+  {
+    "id": "retail_02_biased",
+    "pair_id": "retail_02",
+    "condition": "biased",
+    "domain": "retail"
+  },
+  {
+    "id": "retail_02_neutral",
+    "pair_id": "retail_02",
+    "condition": "neutral",
+    "domain": "retail"
+  },
+  {
+    "id": "retail_03_biased",
+    "pair_id": "retail_03",
+    "condition": "biased",
+    "domain": "retail"
+  },
+  {
+    "id": "retail_03_neutral",
+    "pair_id": "retail_03",
+    "condition": "neutral",
+    "domain": "retail"
+  },
+  {
+    "id": "retail_04_biased",
+    "pair_id": "retail_04",
+    "condition": "biased",
+    "domain": "retail"
+  },
+  {
+    "id": "retail_04_neutral",
+    "pair_id": "retail_04",
+    "condition": "neutral",
+    "domain": "retail"
+  }
+]
