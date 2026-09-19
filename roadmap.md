@@ -195,3 +195,19 @@ not just a single positive result.
 
 **You leave with:** a finished project write-up and a clear list of what you'd do next if you
 kept going.
+
+---
+
+## Further directions
+
+Extensions worth considering if you want to strengthen the project for a resume or push it toward research quality.
+
+**Held-out evaluation.** The 48-story dataset is small. A skeptical reviewer will ask whether the direction generalizes. Split into train/test pairs — compute the bias direction on 18 pairs and validate separation on the held-out 6. This one change makes the empirical story significantly more defensible.
+
+**Per-domain breakdown.** Does the bias direction generalize across all six domains (hiring, housing, healthcare, education, criminal justice, retail), or is it domain-specific? A layer-by-layer heatmap of projection scores broken out by domain would reveal whether you've found a general bias direction or six narrower ones.
+
+**Cross-model comparison.** Run the same pipeline on Gemma 2 2B vs. 9B. Does the bias direction appear at the same relative depth? Does it get cleaner with scale? Cheap to run once the pipeline exists, and cross-model comparison immediately elevates the scope from "one experiment" to "a finding about how scale affects representation."
+
+**Interactive demo.** A Gradio app where you paste any story and see its projection onto the bias direction at each layer, visualized in real time. Takes a day to build and makes the project immediately tangible to anyone who looks at the repo — no ML background required to see what's going on.
+
+**Short write-up.** A 4-page PDF in NeurIPS format covering method, results (probe accuracy, logit lens, dose-response, ablations), limitations, and next steps. Having a paper-format artifact makes this feel like research rather than a class project, and gives you something concrete to send to professors or attach to applications.
