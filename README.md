@@ -1,119 +1,85 @@
-# BiasGPT — Bias Vectors in Gemma
+# Bias Vectors in Gemma
 
-Replication and extension of the linear representation hypothesis applied to implicit
-social bias. A frontier model (Claude) writes matched story pairs; Gemma is the subject
-of study — it only reads the finished stories, never generates them.
+Mechanistic interpretability project investigating whether implicit social bias is linearly represented in Gemma's residual stream — and if so, whether it can be located, validated, and causally manipulated.
 
-See `plan.md` for full project scope. See `roadmap.md` for the session-by-session
-curriculum (Part 1, interactive).
+The methodology follows the linear representation hypothesis: if a concept is represented as a direction in activation space, you can find it via mean-difference vectors, validate it with probing and logit-lens analysis, and prove causality by steering along that direction and measuring the effect.
 
 ---
 
-## Data generation (Part 0)
+## The core question
 
-This section covers everything needed to produce the story dataset. Nothing here touches
-model loading, activations, or any mech-interp code — that lives in Part 1.
+Does Gemma internally represent implicit social bias as a consistent geometric direction in its residual stream? If yes, can steering along that direction predictably increase or decrease biased reasoning — separate from generic sentiment effects?
 
-### What the dataset is
+---
 
-48 short stories (~300 words each), organized as 24 matched pairs across six domains:
-
-| Domain           | Pairs |
-|------------------|-------|
-| hiring           | 4     |
-| healthcare       | 4     |
-| housing          | 4     |
-| education        | 4     |
-| criminal_justice | 4     |
-| retail           | 4     |
-
-Each pair has:
-- **biased** — a story where the protagonist's implicit bias appears through internal
-  reactions and choices, never through explicit statements or slurs.
-- **neutral** — the same scenario, same protagonist, same structure, but with no
-  demographic markers for the secondary character and no differential treatment.
-
-The pairs are the fundamental unit. Downstream activation-extraction and steering code
-always processes them together so that "biased minus neutral" isolates the bias signal
-rather than domain/topic/register.
-
-### Files
+## Pipeline
 
 ```
-story_prompts.json      24 curated prompt pairs (canonical source)
-generate_stories.py     Calls the Anthropic API to generate stories from prompts
-stories.jsonl           Generated story dataset (gitignored; produce locally)
-generation_failures.log Per-run failure log (gitignored)
-requirements.txt        Python dependencies
+Matched story pairs  →  Gemma residual stream  →  Mean-difference vector
+(biased / neutral)       activations per layer      (bias direction)
+                                                          │
+                                              ┌───────────┴───────────┐
+                                         Linear probe             Logit lens
+                                       (correlation)              (where it lives)
+                                              └───────────┬───────────┘
+                                                   Activation steering
+                                                   + dose-response curve
+                                                     (causal validation)
 ```
 
-### Setup
+**Two-model design:** a frontier model (Claude) generates the story dataset from curated prompts. Gemma is the subject of study — it only ever reads the finished stories, never generates them. This keeps the two roles clean.
+
+---
+
+## Dataset
+
+48 short stories (~280 words each), structured as 24 matched biased/neutral pairs across six domains: hiring, healthcare, housing, education, criminal justice, and retail.
+
+Each pair has an identical scenario and protagonist. The biased version shows implicit bias through internal reactions and differential choices; the neutral version strips demographic markers entirely. The pair is the unit of analysis — subtracting neutral activations from biased activations isolates the bias signal from domain, register, and topic.
+
+Bias appears only through the protagonist's internal monologue and choices, never through slurs or explicit statements. Neutral stories have no race- or ethnicity-coded details.
+
+Dataset lives in `stories.jsonl` (gitignored — generate locally with `generate_stories.py`).
+
+---
+
+## Status
+
+**Part 0 — data pipeline:** complete. Story dataset generated and spot-checked.
+
+**Part 1 — mechanistic interpretability:** in progress.
+
+| Session | Topic | Status |
+|---------|-------|--------|
+| 1 | Load Gemma on GPU, first forward pass | in progress |
+| 2 | Residual stream extraction across all layers | — |
+| 3 | Linear representation hypothesis, mean-difference vectors | — |
+| 4 | Confound projection | — |
+| 5 | Activation extraction on full dataset | — |
+| 6 | Linear probing | — |
+| 7 | Logit lens | — |
+| 8 | Activation steering | — |
+| 9 | Dose-response curve | — |
+| 10 | Ablation and specificity checks | — |
+| 11 | Write-up | — |
+
+---
+
+## Stack
+
+- **Model:** `google/gemma-2-9b` (4-bit quantized via bitsandbytes)
+- **Compute:** RunPod RTX 4090
+- **Libraries:** transformers, accelerate, bitsandbytes, PyTorch 2.8
+
+---
+
+## Setup
 
 ```bash
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=sk-ant-...
+python generate_stories.py --dry-run   # check without spending credits
+python generate_stories.py             # generate full dataset
 ```
 
-### Generating stories
-
-Smoke test (first 3 pairs only):
-
-```bash
-python generate_stories.py --limit 3
-```
-
-Full run (all 24 pairs, 48 stories):
-
-```bash
-python generate_stories.py
-```
-
-The script is **resumable**: if it crashes mid-run, re-running it skips any stories
-already written to `stories.jsonl`. It will not duplicate completed work.
-
-Failures are retried with exponential back-off (up to 4 attempts). Persistent failures
-are logged to `generation_failures.log` and skipped so the rest of the run continues.
-Re-run the script to retry them.
-
-To force-regenerate a specific pair (e.g. after a spot-check failure):
-
-```bash
-python generate_stories.py --regenerate hiring_01
-```
-
-To check what would run without spending any API credits:
-
-```bash
-python generate_stories.py --dry-run
-```
-
-### Output format
-
-`stories.jsonl` — one JSON object per line:
-
-```json
-{
-  "id": "hiring_01_biased",
-  "pair_id": "hiring_01",
-  "condition": "biased",
-  "domain": "hiring",
-  "bias_type": "racial",
-  "prompt": "...",
-  "story": "...",
-  "word_count": 298
-}
-```
-
-### Estimated API cost
-
-48 stories at ~300 words each with claude-haiku-4-5:
-- Input: ~150 tokens/prompt × 48 ≈ 7,200 tokens
-- Output: ~400 tokens/story × 48 ≈ 19,200 tokens
-- Estimated total: < $0.10
-
----
-
-## Part 1 (interactive sessions)
-
-See `roadmap.md`. Part 1 starts with Session 1: pulling Gemma off Hugging Face and
-running it on rented compute. None of the Part 1 code is pre-built here.
+`generate_stories.py` is resumable — safe to re-run after a crash. Failed stories are logged to `generation_failures.log` and skipped; re-run to retry them. Force-regenerate a specific pair with `--regenerate <pair_id>`.
