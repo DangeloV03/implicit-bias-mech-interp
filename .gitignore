@@ -1,7 +1,22 @@
+# Generated data (produce locally)
 *.jsonl
 *.log
+
+# Secrets
 .env
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
+*.npy
+
+
+
+# OS
 .DS_Store
+
+# Internal notes / credentials
+CLAUDE.md
+.claude/
+textbook.md
